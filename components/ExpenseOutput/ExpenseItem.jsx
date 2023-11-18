@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 4
+        borderRadius: 4,
+        minWidth:80,
     },
     amount: {
         color: GlobalStyles.colors.primary500,
