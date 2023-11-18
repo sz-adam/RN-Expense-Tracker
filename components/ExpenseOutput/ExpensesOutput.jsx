@@ -32,6 +32,28 @@ const Dummy_Expenses =[
         description:' Book',
         amount: 19.99,
         date:new Date('2023-09-18')
+    },  {
+        id:'e6',
+        description:' A pair of pants',
+        amount: 89.99,
+        date:new Date('2022-11-18')
+    },
+    {
+        id:'e7',
+        description:' computer',
+        amount: 159.99,
+        date:new Date('2023-11-18')
+    }, 
+     {
+        id:'e8',
+        description:' Telephone',
+        amount: 359.99,
+        date:new Date('2023-10-10')
+    },  {
+        id:'e9',
+        description:' Book',
+        amount: 19.99,
+        date:new Date('2023-09-18')
     }
 ]
 
@@ -50,8 +72,11 @@ const styles = StyleSheet.create({
 
     container:{
         flex:1,
-        padding:24,
+        paddingHorizontal:24,
+        paddingTop:24,
+        paddingBottom:0,
         backgroundColor:GlobalStyles.colors.primary700,
+
     }
 
 })
