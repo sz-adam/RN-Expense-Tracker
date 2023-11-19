@@ -13,7 +13,7 @@ const ManageExpense = ({ route, navigation }) => {
   const editedExpenseId = route.params?.expenseId
   const isEditing = !!editedExpenseId
 
-  const selectedExpense = expensesCtx.expenses.find(expense => expense.id ===editedExpenseId)
+  const selectedExpense = expensesCtx.expenses.find(expense => expense.id === editedExpenseId)
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -41,8 +41,8 @@ const ManageExpense = ({ route, navigation }) => {
 
   return (
     <View style={styles.conatainer}>
-      <ExpenseForm cancelHandler={cancelHandler} onSubmit={confirmHandler} defaultValues={selectedExpense} submitButtonLabel={ isEditing ? 'Update': 'Add'}/>
-     
+      <ExpenseForm cancelHandler={cancelHandler} onSubmit={confirmHandler} defaultValues={selectedExpense} submitButtonLabel={isEditing ? 'Update' : 'Add'} />
+
       {isEditing && (
         <View style={styles.deleteContainer}>
           <IconButton icon='trash'
