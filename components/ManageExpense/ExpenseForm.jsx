@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Input from './Input'
 import Button from '../UI/Button'
 
-const ExpenseForm = ({cancelHandler,confirmHandler, submitButtonLabel}) => {
+const ExpenseForm = ({cancelHandler, submitButtonLabel , onSubmit}) => {
 
     const [inputValues, setInputvalues] = useState({
         amount: '',
@@ -13,12 +13,22 @@ const ExpenseForm = ({cancelHandler,confirmHandler, submitButtonLabel}) => {
 
 
     function inputChangedHandler(inputIdentifier, enteredValue) {
-        setAmountValue((curInputValues) => {
+        setInputvalues((curInputValues) => {
             return {
                 ...curInputValues,
                 [inputIdentifier]: enteredValue
             }
         })
+    }
+
+    function submitHandler(){
+        const expenseData ={
+            amount: +inputValues.amount,
+            date: new Date(inputValues.date),
+            description: inputValues.description
+        };
+
+        onSubmit(expenseData)
     }
 
     
@@ -49,7 +59,7 @@ const ExpenseForm = ({cancelHandler,confirmHandler, submitButtonLabel}) => {
                 }} />
             <View style={styles.buttons}>
                 <Button style={styles.button} mode='flat' onPress={cancelHandler}>Cancel</Button>
-                <Button style={styles.button} onPress={confirmHandler}>{submitButtonLabel}</Button>
+                <Button style={styles.button} onPress={submitHandler}>{submitButtonLabel}</Button>
             </View>
         </View>
     )
