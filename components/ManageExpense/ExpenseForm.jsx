@@ -1,29 +1,48 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import Input from './Input'
 
 const ExpenseForm = () => {
-    function amounChangedHandler() { }
+
+    const [inputValues, setInputvalues] = useState({
+        amount: '',
+        date: '',
+        description: ''
+    })
+
+
+    function inputChangedHandler(inputIdentifier ,enteredValue) {
+        setAmountValue((curInputValues)=>{
+            return{
+                ...curInputValues,
+                [inputIdentifier]:enteredValue
+            }
+        })
+    }
     return (
         <View style={styles.form}>
             <Text style={styles.title}>Your Expense</Text>
             <View style={styles.inputsRow}>
                 <Input label='Amount'
-                style={styles.rowInput}
+                    style={styles.rowInput}
                     textInputConfig={{
                         KeyboardType: 'decimal-pad',
-                        onChangeText: amounChangedHandler
+                        onChangeText: inputChangedHandler.bind(this, 'amount'),
+                        value: inputValues.amount
                     }} />
                 <Input label='Date' textInputConfig={{
                     placeholder: 'YYYY-MM-DD',
                     maxlength: 10,
-                    onChangeText: () => { }
+                    onChangeText: inputChangedHandler.bind(this, 'date'),
+                    value: inputValues.date
                 }} />
             </View>
 
             <Input label='Description'
                 textInputConfig={{
                     multiline: true,
+                    onChangeText: inputChangedHandler.bind(this, 'description'),
+                    value: inputValues.description
                 }} />
         </View>
     )
@@ -32,22 +51,22 @@ const ExpenseForm = () => {
 export default ExpenseForm
 
 const styles = StyleSheet.create({
-    form:{
-        marginTop:80,
+    form: {
+        marginTop: 80,
     },
-    title:{
-        fontSize:18,
-        fontWeight:'bold',
-        color:'white',
-        marginVertical:24,
-        textAlign:'center'
+    title: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'white',
+        marginVertical: 24,
+        textAlign: 'center'
     },
-    inputsRow:{
-        flexDirection:'row',
-        justifyContent:'space-between'
+    inputsRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
-    rowInput:{
-        flex:1,
+    rowInput: {
+        flex: 1,
     },
 
 })
