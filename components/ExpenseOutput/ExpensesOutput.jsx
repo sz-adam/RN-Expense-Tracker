@@ -4,64 +4,19 @@ import ExpensesSummary from './ExpensesSummary'
 import ExpensesList from './ExpensesList'
 import { GlobalStyles } from '../../constants/stlyes'
 
-const Dummy_Expenses =[
-    {
-        id:'e1',
-        description:' A pair of shoes',
-        amount: 59.99,
-        date:new Date('2021-11-18')
-    },  {
-        id:'e2',
-        description:' A pair of pants',
-        amount: 89.99,
-        date:new Date('2022-11-18')
-    },
-    {
-        id:'e3',
-        description:' computer',
-        amount: 159.99,
-        date:new Date('2023-11-18')
-    }, 
-     {
-        id:'e4',
-        description:' Telephone',
-        amount: 359.99,
-        date:new Date('2023-10-10')
-    },  {
-        id:'e5',
-        description:' Book',
-        amount: 19.99,
-        date:new Date('2023-09-18')
-    },  {
-        id:'e6',
-        description:' A pair of pants',
-        amount: 89.99,
-        date:new Date('2022-11-18')
-    },
-    {
-        id:'e7',
-        description:' computer',
-        amount: 159.99,
-        date:new Date('2023-11-18')
-    }, 
-     {
-        id:'e8',
-        description:' Telephone',
-        amount: 359.99,
-        date:new Date('2023-10-10')
-    },  {
-        id:'e9',
-        description:' Book',
-        amount: 19.99,
-        date:new Date('2023-09-18')
-    }
-]
 
-const ExpensesOutput = ({ expenses,expensesPeriod }) => {
+
+const ExpensesOutput = ({ expenses, expensesPeriod, fallbackText }) => {
+
+    let content = <Text style={styles.infoText}>{fallbackText}</Text>
+
+    if (expenses.length > 0) {
+        content = <ExpensesList expenses={expenses}/>
+    }
     return (
         <View style={styles.container}>
-            <ExpensesSummary periodName={expensesPeriod} expenses={Dummy_Expenses}/>
-            <ExpensesList expenses={Dummy_Expenses}/>
+            <ExpensesSummary periodName={expensesPeriod} expenses={expenses} />
+            {content}
         </View>
     )
 }
@@ -70,13 +25,18 @@ export default ExpensesOutput
 
 const styles = StyleSheet.create({
 
-    container:{
-        flex:1,
-        paddingHorizontal:24,
-        paddingTop:24,
-        paddingBottom:0,
-        backgroundColor:GlobalStyles.colors.primary700,
-
+    container: {
+        flex: 1,
+        paddingHorizontal: 24,
+        paddingTop: 24,
+        paddingBottom: 0,
+        backgroundColor: GlobalStyles.colors.primary700,
+    },
+    infoText:{
+        color:'white',
+        fontSize:16,
+        textAlign:'center',
+        marginTop:32
     }
 
 })
